@@ -5,7 +5,6 @@ services:
     container_name: tournament-db
     volumes:
       - tournament-db:/var/lib/postgresql/data
-    #      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
     ports:
       - "5490:5432"
     environment:
@@ -15,59 +14,8 @@ services:
     networks:
       - tournament
 
-#  cache:
-#    image: redis:7.0-alpine
-#    restart: unless-stopped
-#    container_name: tournament-cache
-#    ports:
-#      - '6378:6379'
-#    networks:
-#      - tournament
-#    command: redis-server --save 20 1 --loglevel warning --requirepass secret
-#    volumes:
-#      - banking-cache:/data
-
-#  app:
-#    build:
-#      context: .
-#      dockerfile: prod.Dockerfile
-#    restart: unless-stopped
-#    ports:
-#      - "8888:8888"
-#    container_name: komek-app
-#    environment:
-#      - DB_SOURCE=postgresql://app:secret@db:5432/app?sslmode=disable
-#    networks:
-#      - komek
-#    depends_on:
-#      - db
-#      - cache
-#    entrypoint:
-#      - "/app/wait-for.sh"
-#      - "db:5432"
-#      - "--"
-#      - "/app/start.sh"
-#    command:
-#      - "/app/main"
-
-#  app:
-#    build:
-#      context: .
-#      dockerfile: Dockerfile
-#    restart: unless-stopped
-#    ports:
-#      - "8888:8888"
-#    volumes:
-#      - ./:/app/
-#    container_name: komek-app
-#    networks:
-#      - komek
-#    depends_on:
-#      - db
-#    command: air main.go
 
 volumes:
-#  tournament-cache:
   tournament-db:
 
 networks:
